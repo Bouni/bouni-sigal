@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% set number = 4 %}
+
+{% for alb in album.albums %}
+
+    {% if loop.index % number == 1 %}
+    <div id="albums" class="row">
+    {% endif %}
+
+        <div class="col-3">
+            <div class="card"> 
+                <a href="{{ alb.url }}">
+                <img src="{{ alb.thumbnail }}" class="card-img-top" alt="{{ alb.title }}" title="{{ alb.title }}" />
+                </a>
+                <a href="{{ alb.url }}">
+                <h5 class="card-title text-center my-4">{{ alb.title }}</h5>
+                </a>
+            </div>
+        </div>
+
+    {% if loop.last or loop.index % number == 0 %}
+    </div>
+    {% endif%}
+
+{% endfor %}
+
+{% endblock %}

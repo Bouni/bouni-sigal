@@ -1,0 +1,9 @@
+{% if album.breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        {% for url, title in album.breadcrumb %}
+        <li class="breadcrumb-item {% if loop.last %}active{% endif %}"><a href="{{ url }}">{{ title }}</a></li>
+        {% endfor -%}
+        </ol>
+    </nav>      
+{% endif %}

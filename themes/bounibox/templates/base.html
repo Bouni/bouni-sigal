@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ settings.html_language }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <title>{{ album.title }}</title>
+        <meta name="description" content="">
+        <meta name="author" content="{{ album.author }}">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="{{ theme.url }}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ theme.url }}/css/lightbox.min.css">
+        
+        <script src="{{ theme.url }}/js/jquery-3.4.1.min.js"></script>
+        <script src="{{ theme.url }}/js/lightbox.min.js"></script>
+        <script src="{{ theme.url }}/js/popper.min.js"></script>
+        <script src="{{ theme.url }}/js/bootstrap.min.js"></script>
+
+        {% block extra_head %}{% endblock extra_head %}
+    </head>
+    <body>
+        <div class="container">
+        
+            {% if settings.site_logo %}
+            <h1 class="text-center"><a href="{{ album.index_url }}"><img src="{{ theme.url }}/{{ settings.site_logo }}" alt="{{ index_title }}"></a></h1>
+            {% else %}
+            <h1 class="text-center"><a href="{{ album.index_url }}">{{ index_title }}</a></h1>
+            {% endif %}
+            
+            {% include 'breadcrumb.html' %}
+            {% if album.breadcrumb %}
+            <hr>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        
+        </div>
+
+        {% block footer %}{% endblock %}
+
+    </body>
+</html>

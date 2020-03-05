@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% set number = 4 %}
+
+<div id="lightgallery">
+{% for media in album.medias %}
+    {% if loop.index % number == 1 %}
+    <div id="albums" class="row">
+    {% endif %}
+
+        <div class="col-3">
+            <a href="{{ media.url }}" data-lightbox="album">
+            <div class="card mb-2"> 
+                <img src="{{ media.thumbnail }}" class="card-img-top" alt="{{ media.title }}" title="{{ media.title }}" />
+                <div class="card-body">
+                <p class="card-text text-center my-2">
+                {% if media.exif %}
+                    {{ media.exif.datetime }}
+                {% endif %}
+                </p>
+                </div>
+            </div>
+            </a>
+        </div>
+
+    {% if loop.last or loop.index % number == 0 %}
+    </div>
+    {% endif%}
+
+{% endfor %}
+</div>
+
+{% endblock %}
+
